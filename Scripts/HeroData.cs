@@ -9,6 +9,6 @@ public class HeroData
     public string name;
     public int level;
     public int heroClassIndex;
-    public string heroClassname;
+    public string heroClassName;
     public int gold;
 }

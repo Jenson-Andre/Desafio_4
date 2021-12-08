@@ -34,7 +34,7 @@ public class Q3 : MonoBehaviour
             return ci;
         }).ToList();
 
-
+        //contagem do index mais usado
         var result1 = HD.GroupBy(i => i.heroClassIndex)
                 .Select(j => new
                 {
@@ -42,8 +42,31 @@ public class Q3 : MonoBehaviour
                     count = j.Count()
                 }).ToList().OrderByDescending(n => n.count).First();
       
+        //contagem do nome mais usado
+        var result2 = HD.GroupBy(i => i.heroClassName)
+                .Select(j => new
+                {
+                    heroclass = j.Key,
+                    count = j.Count()
+                }).ToList().OrderByDescending(n => n.count).First();
+
+        //contagem do index menos usado
+        var result3 = HD.GroupBy(i => i.heroClassIndex)
+                .Select(j => new
+                {
+                    heroclass = j.Key,
+                    count = j.Count()
+                }).ToList().OrderBy(n => n.count).First();
+                
+        //contagem do nome menos usado
+        var result4 = HD.GroupBy(i => i.heroClassName)
+                .Select(j => new
+                {
+                    heroclass = j.Key,
+                    count = j.Count()
+                }).ToList().OrderBy(n => n.count).First();
         
-        Debug.Log( "\nClasse: " + result1.heroclass  + "\t\tContagem: " +result1.count);
-        ResultDisplay.text += "\nClasse: " + result1.heroclass  + "\t\tContagem: " +result1.count;
+        Debug.Log( "\nClasse mais usada: " + result1.heroclass + " " + result2.heroclass  + "\t\tContagem da mais usada: " + result1.count + "\nClasse menos usada: " + result3.heroclass + " " + result4.heroclass + "\t\tContagem da menos usada: " + result3.count);
+        ResultDisplay.text += "\nClasse mais usada: " + result1.heroclass + " " + result2.heroclass  + "\t\tContagem da mais usada: " + result1.count + "\nClasse menos usada: " + result3.heroclass + " " + result4.heroclass + "\t\tContagem da menos usada: " + result3.count;
    }
 }
